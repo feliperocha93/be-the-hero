@@ -33,3 +33,6 @@ Recebe dois parâmeros:
 
 #### Intl
 Classe Global do _JavaScript_ referente a internacionalização (Tratamento de formato de dados para apresentar ao usuário)
+
+#### Hospedagem
+- Netlify: Free
