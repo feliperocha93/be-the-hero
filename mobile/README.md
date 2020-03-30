@@ -26,3 +26,6 @@ O Intl do Javascript não funciona no Android, por isso, usamos npm i intl
 
 #### useRoute
 Serve para pegar os parametros enviados para a rota que o app está.
+
+#### Hospedagem
+https://www.youtube.com/watch?v=wYMvzbfBdYI

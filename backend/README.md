@@ -59,6 +59,7 @@ Forma de criar tabelas e manter um histórico das alterações que foram feitas,
 - Heroku: free  
 - Digital Ocean: Comercial ($5/mo) - *90% das aplicações vai se encaixar aqui*
 - Azure, Aws, Google Cloud... Quando a aplicação toma grandes proporções
+https://www.youtube.com/watch?v=-j7vLmBMsEU
 
 #### Atividades extra:
 - Finalizar validações das rotas
