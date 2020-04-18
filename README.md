@@ -1,9 +1,12 @@
-## Acesse:
-https://bth-react.netlify.com/
+# Versão BETA
 
-#### Próximas atividades:
+## Acesse:
+https://bth-react.netlify.app/
+
+### Próxima versão:
 - Responsivo
-- Autenticação
+- Autenticação via JWT
+- Criação de perfis para ONG ou Voluntário
 
 #### Estudos complementares para este curso:
 - Padrões de código: ESLint, Prettir
