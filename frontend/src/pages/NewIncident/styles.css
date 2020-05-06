@@ -1,5 +1,5 @@
 .new-incident-container {
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 auto;
   max-width: 1120px;
   width: 100%;
@@ -45,4 +45,17 @@
 .new-incident-container .content form input,
 .new-incident-container .content form textarea {
   margin-top: 8px;
+}
+
+@media screen and (max-width: 960px) {
+  .new-incident-container .content {
+    flex-direction: column;
+    padding: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .new-incident-container .content {
+    min-height: 100vh;
+  }
 }
