@@ -9,6 +9,7 @@ import './styles.css';
 
 export default function Register() {
   const [name, setName] = useState('');
+  const [password, setPasword] = useState('');
   const [email, setEmail] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [city, setCity] = useState('');
@@ -21,6 +22,7 @@ export default function Register() {
 
     const data = {
       name,
+      password,
       email,
       whatsapp,
       city,
@@ -29,8 +31,8 @@ export default function Register() {
     try {
       const response = await api.post('ongs', data);
 
-      alert(`Seu ID de acesso: ${response.data.id}`);
-      
+      alert(`Suas credenciais de login foram enviadas para ${response.data.email}}`);
+
       history.push('/');
     } catch {
       alert(`Erro no cadastro, tente novamente.`);
@@ -49,7 +51,7 @@ export default function Register() {
 
           <Link className="back-link" to="/">
             <FiArrowLeft size={16} color="#E02041" />
-            Não tenho cadastro
+            Voltar para logon
         </Link>
         </section>
 
@@ -65,6 +67,12 @@ export default function Register() {
             placeholder="E-mail"
             value={email}
             onChange={e => setEmail(e.target.value)}
+          />
+
+          <input
+            placeholder="Senha"
+            value={password}
+            onChange={e => setName(e.target.value)}
           />
 
           <input

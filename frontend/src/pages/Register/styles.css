@@ -53,3 +53,19 @@
 .register-container .content form .input-group input + input {
   margin-left: 8px;
 }
+
+@media screen and (max-width: 960px) {
+  .register-container {
+    height: auto;
+  }
+
+  .register-container .content {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .register-container .content {
+    padding: 30px;
+  }
+}
