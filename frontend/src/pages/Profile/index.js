@@ -57,8 +57,11 @@ export default function Profile() {
         <img src={logoImg} alt="Be The Hero" />
         <span>Bem-vindo, {ongName}</span>
 
-        <Link className="button" to="/incidents/new">Cadastrar novo caso</Link>
+        <Link className="button" to="/incidents/new" title="Cadastrar novo caso">
+          Cadastrar novo caso
+        </Link>
         <button
+          title="Sair"
           type="button"
           onClick={handleLogout}
         >
@@ -81,6 +84,7 @@ export default function Profile() {
             <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(incident.value)}</p>
 
             <button
+              title="Deletar caso"
               type="button"
               onClick={() => handleDeleteIncident(incident.id)}
             >

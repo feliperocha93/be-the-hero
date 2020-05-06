@@ -49,7 +49,7 @@ export default function NewIncident() {
           <h1>Cadastrar novo caso</h1>
           <p>Descreva o caso detalhadamente para encontrar um herói</p>
 
-          <Link className="back-link" to="/profile">
+          <Link className="back-link" to="/profile" title="Voltar para home">
             <FiArrowLeft size={16} color="#E02041" />
             Voltar para a Home
         </Link>
@@ -72,7 +72,7 @@ export default function NewIncident() {
             onChange={e => setValue(e.target.value)}
           />
 
-          <button className="button" type="submit">
+          <button className="button" type="submit" title="Cadastrar">
             Cadastrar
           </button>
         </form>

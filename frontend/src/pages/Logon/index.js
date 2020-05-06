@@ -55,9 +55,14 @@ export default function Logon() {
             value={password}
             onChange={e => setpassword(e.target.value)}
           />
-          <button className="button" type="submit">Entrar</button>
+          <button
+            title="Entrar"
+            className="button"
+            type="submit">
+            Entrar
+            </button>
 
-          <Link className="back-link" to="/register">
+          <Link className="back-link" to="/register" title="Não tenho cadastro">
             <FiLogIn size={16} color="#E02041" />
             Não tenho cadastro
           </Link>
