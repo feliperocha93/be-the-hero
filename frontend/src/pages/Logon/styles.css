@@ -23,3 +23,19 @@
   font-size: 32px;
   margin-bottom: 32px;
 }
+
+.logon-container section form input {
+  margin-top: 8px;
+}
+
+@media screen and (max-width: 780px) {
+  .logon-container {
+    flex-direction: column;
+    justify-content: unset;
+  }
+
+  .logon-container section.form form {
+    margin-top: 60px;
+  }
+  
+}

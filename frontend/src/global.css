@@ -81,3 +81,9 @@ form textarea {
 .back-link:hover {
   opacity: .8;
 }
+
+@media screen and (max-width: 960px) {
+  .heroes-img {
+    max-width: 50%;
+  }
+}

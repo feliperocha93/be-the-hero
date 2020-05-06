@@ -11,6 +11,7 @@ import heroesImg from '../../assets/heroes.png';
 
 export default function Logon() {
   const [id, setId] = useState('');
+  const [password, setpassword] = useState('');
 
   const history = useHistory();
 
@@ -42,6 +43,11 @@ export default function Logon() {
             value={id}
             onChange={e => setId(e.target.value)}
           />
+          <input
+            placeholder="Senha"
+            value={password}
+            onChange={e => setpassword(e.target.value)}
+          />
           <button className="button" type="submit">Entrar</button>
 
           <Link className="back-link" to="/register">
@@ -52,7 +58,7 @@ export default function Logon() {
 
       </section>
 
-      <img src={heroesImg} alt="Heroes" />
+      <img className="heroes-img" src={heroesImg} alt="Heroes" />
     </div>
   );
 }
