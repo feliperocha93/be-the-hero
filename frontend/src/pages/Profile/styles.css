@@ -85,3 +85,35 @@
   font-size: 16px;
   line-height: 21px;
 }
+
+@media screen and (max-width: 768px) {
+  .profile-container header {
+    flex-wrap: wrap;
+  }
+
+  .profile-container span {
+    margin: 20px auto 0;
+    order: 1;
+  }
+
+  .profile-container ul {
+    grid-template-columns: unset;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile-container header {
+    justify-content: space-between;
+  }
+
+  .profile-container header img,
+  .profile-container header button {
+    order: -1;
+  }
+
+  .profile-container header a {
+    margin-top: 32px;
+    order: 2;
+    width: 100%;
+  } 
+}

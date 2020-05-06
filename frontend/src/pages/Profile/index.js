@@ -16,15 +16,20 @@ export default function Profile() {
   const ongId = localStorage.getItem('ongId');
   const ongName = localStorage.getItem('ongName');
 
+  // useEffect(() => {
+  //   api.get('profile', {
+  //     headers: {
+  //       Authorization: ongId
+  //     }
+  //   }).then(response => {
+  //     setIncidents(response.data);
+  //   })
+  // }, [ongId]);
+
   useEffect(() => {
-    api.get('profile', {
-      headers: {
-        Authorization: ongId
-      }
-    }).then(response => {
-      setIncidents(response.data);
-    })
-  }, [ongId]);
+    api.get('incidents')
+      .then(response => setIncidents(response.data))
+  }, []);
 
   async function handleDeleteIncident(id) {
     try {
