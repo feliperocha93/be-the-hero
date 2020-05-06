@@ -19,11 +19,18 @@ export default function Logon() {
     e.preventDefault();
 
     try {
-      const response = await api.post('sessions', { email, password });
+      // const response = await api.post('sessions', { email, password });
+      const response = await api.get(`ongs?email=${email}&password=${password}`);
 
-      localStorage.setItem('ongName', response.data.name);
+      // localStorage.setItem('ongName', response.data.name);
+      localStorage.setItem('ongName', response.data[0].name);
 
-      history.push('/profile');
+      if (response.data.length > 0) {
+        history.push('/profile');
+      } else {
+        alert('Usuário ou senha inválido');
+      }
+
     } catch (err) {
       alert('Falha no login, tente novamente');
     }
@@ -43,6 +50,7 @@ export default function Logon() {
             onChange={e => setEmail(e.target.value)}
           />
           <input
+            type="password"
             placeholder="Senha"
             value={password}
             onChange={e => setpassword(e.target.value)}

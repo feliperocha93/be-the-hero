@@ -31,7 +31,7 @@ export default function Register() {
     try {
       const response = await api.post('ongs', data);
 
-      alert(`Suas credenciais de login foram enviadas para ${response.data.email}}`);
+      alert(`Suas credenciais de login foram enviadas para ${response.data.email}`);
 
       history.push('/');
     } catch {
@@ -70,9 +70,10 @@ export default function Register() {
           />
 
           <input
+            type="password"
             placeholder="Senha"
             value={password}
-            onChange={e => setName(e.target.value)}
+            onChange={e => setPasword(e.target.value)}
           />
 
           <input
