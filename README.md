@@ -13,3 +13,4 @@ https://bth-react.netlify.app/
 - Autenticação JWT
 - Styled Components
 
+## Cadastre-se!

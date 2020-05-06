@@ -36,4 +36,4 @@ Classe Global do _JavaScript_ referente a internacionalização (Tratamento de f
 
 #### Hospedagem
 - Netlify: Free
-- ID de teste: ff8ee465
+- ID de teste: 2f46823a
