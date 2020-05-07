@@ -1,4 +1,4 @@
-const generateUniqueId = require("../utils/generateUniqueId")
+const cryptr = require("../utils/cryptr")
 const connection = require("../database/connection");
 
 module.exports = {
@@ -9,20 +9,20 @@ module.exports = {
   },
 
   async create(request, response) {
-    const { name, email, whatsapp, city, uf } = request.body;
+    const { name, email, password, whatsapp, city, uf } = request.body;
 
-    const id = generateUniqueId();
+    const encryptedPassword = cryptr.encryptPassword(password);
 
     await connection("ongs").insert({
-      id,
       name,
       email,
+      password: encryptedPassword,
       whatsapp,
       city,
       uf
     });
     //Retorno do método insert pode demorar, por isso a função é assíncrona
 
-    return response.json({ id });
+    return response.json({ email });
   }
 };
