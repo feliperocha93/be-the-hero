@@ -1,14 +1,14 @@
-const Cryptr = require("cryptr");
-const cryptr = new Cryptr('AH15GA165R');
+const bcrypt = require('bcrypt');
+const saltRounds = 2;
 
 module.exports = {
 
   encryptPassword(password) {
-    return cryptr.encrypt(password);
+    return bcrypt.hashSync(password, saltRounds);
   },
 
-  decryptPasswrod(encryptedPassword) {
-    return cryptr.decrypt(encryptedPassword);
+  comparePasswrod(password, encryptedPassword) {
+    return bcrypt.compareSync(password, encryptedPassword);
   }
 
 }

@@ -1,4 +1,4 @@
-const cryptr = require("../utils/cryptr")
+const brypt = require("../utils/brypt");
 const connection = require("../database/connection");
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
   async create(request, response) {
     const { name, email, password, whatsapp, city, uf } = request.body;
 
-    const encryptedPassword = cryptr.encryptPassword(password);
+    const encryptedPassword = brypt.encryptPassword(password);
 
     await connection("ongs").insert({
       name,
