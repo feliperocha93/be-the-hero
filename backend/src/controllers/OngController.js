@@ -1,5 +1,6 @@
-const brypt = require("../utils/brypt");
 const connection = require("../database/connection");
+const bcrypt = require("../utils/bcrypt");
+const nodemailer = require("../utils/nodemailer");
 
 module.exports = {
   async index(request, response) {
@@ -11,18 +12,23 @@ module.exports = {
   async create(request, response) {
     const { name, email, password, whatsapp, city, uf } = request.body;
 
-    const encryptedPassword = brypt.encryptPassword(password);
+    const encryptedPassword = bcrypt.encryptPassword(password);
 
-    await connection("ongs").insert({
-      name,
-      email,
-      password: encryptedPassword,
-      whatsapp,
-      city,
-      uf
-    });
-    //Retorno do método insert pode demorar, por isso a função é assíncrona
+    try {
+      await connection("ongs").insert({
+        name,
+        email,
+        password: encryptedPassword,
+        whatsapp,
+        city,
+        uf
+      });
 
-    return response.json({ email });
+      nodemailer.sendPassword(email, password);
+    } catch (error) {
+      return response.json(error);
+    }
+
+    return response.sendStatus(200);
   }
 };

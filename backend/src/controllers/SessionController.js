@@ -1,5 +1,5 @@
 const connection = require("../database/connection");
-const brypt = require("../utils/brypt");
+const bcrypt = require("../utils/bcrypt");
 
 module.exports = {
   async create(request, response) {
@@ -10,7 +10,7 @@ module.exports = {
       .select("name", "password")
       .first();
 
-    const passwordCorrect = brypt.comparePasswrod(password, ong.password);
+    const passwordCorrect = bcrypt.comparePasswrod(password, ong.password);
 
     if (!passwordCorrect) {
       return response.status(400).json({ error: "Email or password incorrect." });

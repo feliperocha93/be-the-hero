@@ -36,8 +36,8 @@ Forma de criar tabelas e manter um histórico das alterações que foram feitas,
 - Biblioteca para fazer validações
 - Nota: Lembrar de configurar um DB para teste
 
-#### brypt
-- Lib para criptografar/decriptografar textos. Muito fácil de usar.
+#### bcrypt
+- Lib para criptografar senhas e comparar hash. Muito fácil de usar.
 
 #### Jest
 - Biblioteca de testes
