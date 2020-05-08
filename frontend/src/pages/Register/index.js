@@ -29,9 +29,9 @@ export default function Register() {
       uf
     };
     try {
-      const response = await api.post('ongs', data);
+      await api.post('ongs', data);
 
-      alert(`Suas credenciais de login foram enviadas para ${response.data.email}`);
+      alert(`Suas credenciais de login foram enviadas para ${email}`);
 
       history.push('/');
     } catch {

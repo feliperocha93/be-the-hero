@@ -7,7 +7,7 @@ module.exports = {
 
     const ong = await connection("ongs")
       .where({ "email": email })
-      .select("name", "password")
+      .select("id", "name", "password")
       .first();
 
     const passwordCorrect = bcrypt.comparePasswrod(password, ong.password);
@@ -16,6 +16,6 @@ module.exports = {
       return response.status(400).json({ error: "Email or password incorrect." });
     }
 
-    return response.json(ong.name);
+    return response.json(ong);
   }
 };

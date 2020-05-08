@@ -19,17 +19,12 @@ export default function Logon() {
     e.preventDefault();
 
     try {
-      // const response = await api.post('sessions', { email, password });
-      const response = await api.get(`ongs?email=${email}&password=${password}`);
+      const response = await api.post('sessions', { email, password });
 
-      // localStorage.setItem('ongName', response.data.name);
-      localStorage.setItem('ongName', response.data[0].name);
+      localStorage.setItem('ongName', response.data.name);
+      localStorage.setItem('ongId', response.data.id);
 
-      if (response.data.length > 0) {
-        history.push('/profile');
-      } else {
-        alert('Usuário ou senha inválido');
-      }
+      history.push('/profile');
 
     } catch (err) {
       alert('Falha no login, tente novamente');

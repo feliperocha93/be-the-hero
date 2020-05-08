@@ -29,6 +29,6 @@ module.exports = {
       return response.json(error);
     }
 
-    return response.sendStatus(200);
+    return response.sendStatus(200).json(email);
   }
 };
