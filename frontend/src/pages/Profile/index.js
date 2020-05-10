@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { FiPower, FiTrash2 } from 'react-icons/fi'
+
+import { Context } from '../../auth/authContext';
 
 import api from '../../services/api';
 
@@ -10,40 +12,28 @@ import logoImg from '../../assets/logo.svg';
 
 export default function Profile() {
   const [incidents, setIncidents] = useState([]);
+  const { handleLogout } = useContext(Context);
 
-  const history = useHistory();
-
-  const ongId = localStorage.getItem('ongId');
+  const ongId = +localStorage.getItem('ongId');
   const ongName = localStorage.getItem('ongName');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    api.get('profile', {
-      headers: {
-        Authorization: ongId
-      }
-    }).then(response => {
-      setIncidents(response.data);
-    })
-  }, [ongId]);
+    api.get(`profile?id=${ongId}`)
+      .then(response => {
+        setIncidents(response.data);
+      });
+  }, [ongId, token]);
 
-  async function handleDeleteIncident(id) {
+  async function handleDeleteIncident(id, title) {
     try {
-      await api.delete(`incidents/${id}`, {
-        headers: {
-          Authorization: ongId
-        }
-      })
+      await api.delete(`incidents?id=${id}&ongid=${ongId}`);
 
       setIncidents(incidents.filter(incident => incident.id !== id));
+      alert(`O caso ${title} foi deletado.`);
     } catch (error) {
       alert('Erro ao deletar caso. Tente novamente')
     }
-  }
-
-  function handleLogout() {
-    localStorage.clear();
-
-    history.push('/');
   }
 
   return (
@@ -81,7 +71,7 @@ export default function Profile() {
             <button
               title="Deletar caso"
               type="button"
-              onClick={() => handleDeleteIncident(incident.id)}
+              onClick={() => handleDeleteIncident(incident.id, incident.title)}
             >
               <FiTrash2 size={20} color="#a8a8b3" />
             </button>

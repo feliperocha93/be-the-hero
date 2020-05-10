@@ -12,6 +12,13 @@ module.exports = {
   async create(request, response) {
     const { name, email, password, whatsapp, city, uf } = request.body;
 
+    const verifyEmail = await connection("ongs").select("id").where("email", email).first();
+
+    if (verifyEmail !== undefined) {
+      console.error(`Email duplicated: ${email} already exist`);
+      return response.send({ error: 'Este e-mail já está cadastrado' });
+    }
+
     const encryptedPassword = bcrypt.encryptPassword(password);
 
     try {
@@ -29,6 +36,6 @@ module.exports = {
       return response.json(error);
     }
 
-    return response.sendStatus(200).json(email);
+    return response.status(200).send(email);
   }
 };

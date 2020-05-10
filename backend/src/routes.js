@@ -1,5 +1,8 @@
 const express = require("express");
+const jwt = require('jsonwebtoken');
 const { celebrate, Segments, Joi } = require('celebrate');
+
+const authMiddleware = require('./auth');
 
 const OngController = require("./controllers/OngController");
 const IncidentController = require("./controllers/IncidentController");
@@ -10,7 +13,6 @@ const routes = express.Router();
 
 routes.post("/sessions", SessionController.create);
 
-routes.get("/ongs", OngController.index);
 routes.post("/ongs", celebrate({
   [Segments.BODY]: Joi.object().keys({
     name: Joi.string().required(),
@@ -21,6 +23,12 @@ routes.post("/ongs", celebrate({
     uf: Joi.string().required().length(2)
   })
 }), OngController.create);
+
+// Daqui para baixo deve ser rotas privadas
+
+routes.use(authMiddleware);
+
+routes.get("/ongs", OngController.index);
 
 routes.get("/profile", celebrate({
   [Segments.HEADERS]: Joi.object({
@@ -35,10 +43,12 @@ routes.get("/incidents", celebrate({
 }), IncidentController.index);
 routes.post("/incidents", IncidentController.create);
 
-routes.delete("/incidents/:id", celebrate({
-  [Segments.PARAMS]: Joi.object().keys({
-    id: Joi.number().required()
-  })
-}), IncidentController.delete);
+routes.delete("/incidents",
+  celebrate({
+    [Segments.QUERY]: Joi.object().keys({
+      id: Joi.required(),
+      ongid: Joi.required()
+    })
+  }), IncidentController.delete);
 
 module.exports = routes;

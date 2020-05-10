@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -13,9 +13,7 @@ export default function NewIncident() {
   const [description, setDescription] = useState('');
   const [value, setValue] = useState('');
 
-  const history = useHistory();
-
-  const ongId = localStorage.getItem('ongId');
+  const ong_id = localStorage.getItem('ongId');
 
   async function handleNewIncident(e) {
     e.preventDefault();
@@ -23,17 +21,14 @@ export default function NewIncident() {
     const data = {
       title,
       description,
-      value
+      value,
+      ong_id
     }
 
     try {
-      await api.post('incidents', data, {
-        headers: {
-          Authorization: ongId
-        }
-      })
+      await api.post('incidents', data);
 
-      history.push('/profile');
+      window.location = '/profile';
     } catch (error) {
       alert('Erro ao cadastrar caso. Tente novamente')
     }

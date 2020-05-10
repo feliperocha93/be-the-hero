@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
 
-import api from '../../services/api';
+import { Context } from '../../auth/authContext';
 
 import './styles.css';
 
@@ -10,25 +10,14 @@ import logoImg from '../../assets/logo.svg';
 import heroesImg from '../../assets/heroes.png';
 
 export default function Logon() {
+  const { handleLogin } = useContext(Context);
+
   const [email, setEmail] = useState('');
   const [password, setpassword] = useState('');
 
-  const history = useHistory();
-
-  async function handleLogin(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-
-    try {
-      const response = await api.post('sessions', { email, password });
-
-      localStorage.setItem('ongName', response.data.name);
-      localStorage.setItem('ongId', response.data.id);
-
-      history.push('/profile');
-
-    } catch (err) {
-      alert('Falha no login, tente novamente');
-    }
+    handleLogin(email, password);
   }
 
   return (
@@ -36,7 +25,7 @@ export default function Logon() {
       <section className="form">
         <img src={logoImg} alt="Be The Hero" />
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <h1>Faça seu logon</h1>
 
           <input
@@ -55,7 +44,7 @@ export default function Logon() {
             className="button"
             type="submit">
             Entrar
-            </button>
+          </button>
 
           <Link className="back-link" to="/register" title="Não tenho cadastro">
             <FiLogIn size={16} color="#E02041" />

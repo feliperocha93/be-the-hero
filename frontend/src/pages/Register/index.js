@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -14,8 +15,7 @@ export default function Register() {
   const [whatsapp, setWhatsapp] = useState('');
   const [city, setCity] = useState('');
   const [uf, setUf] = useState('');
-
-  const history = useHistory();
+  // const [response, setResponse] = useState('');
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -28,15 +28,16 @@ export default function Register() {
       city,
       uf
     };
-    try {
-      await api.post('ongs', data);
 
-      alert(`Suas credenciais de login foram enviadas para ${email}`);
+    const response = await api.post('ongs', data);
 
-      history.push('/');
-    } catch {
-      alert(`Erro no cadastro, tente novamente.`);
+    if (response.data.error) {
+      return alert(response.data.error);
     }
+
+    alert(`Suas credenciais de login foram enviadas para ${email}`);
+
+    window.location = '/';
   }
 
   return (
