@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -15,7 +14,6 @@ export default function Register() {
   const [whatsapp, setWhatsapp] = useState('');
   const [city, setCity] = useState('');
   const [uf, setUf] = useState('');
-  // const [response, setResponse] = useState('');
 
   async function handleRegister(e) {
     e.preventDefault();
