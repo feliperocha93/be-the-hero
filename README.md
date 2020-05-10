@@ -1,16 +1,16 @@
-# Versão BETA
+# Versão BETA 2
 
 ## Acesse:
 https://bth-react.netlify.app/
 
-### Próxima versão:
+### Primeira atualização:
 - Responsivo
+- Login com email e senha(criptografa), antes era feito por ID único
 - Autenticação via JWT
-- Criação de perfis para ONG ou Voluntário
+- Envio de e-mail com credenciais da ong no ato do cadastro
 
-#### Estudos complementares para este curso:
-- Padrões de código: ESLint, Prettir
-- Autenticação JWT
-- Styled Components
+### Próxima atualização
+- Criação de Roles (ONG ou voluntário)
+- Filtro para voluntário visualizar caso
 
 ## Cadastre-se!
